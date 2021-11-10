@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import Product from '../Product/Product';
+import Product from '../Bike/Bike';
 
-const Products = () => {
+const Bikes = () => {
 
     return (
         <div>
@@ -21,4 +21,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default Bikes;

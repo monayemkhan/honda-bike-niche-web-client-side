@@ -9,24 +9,21 @@ const Navigation = () => {
                 <div class="container-fluid">
                     <div className="row">
                         <div className="col-md-4">
-                            <NavLink class="navbar-brand" to="/home">
-                                <img className="w-50" src={logo} alt="" />
+                            <NavLink className="navbar-brand" to="/home">
+                                <img className="w-75" src={logo} alt="" />
                             </NavLink>
                         </div>
                         <div className="col-md-5">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse"      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                             </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
+                            <div className="collapse navbar-collapse" id="navbarNav">
+                                <ul className="navbar-nav">
                                     <li class="nav-item">
-                                    <NavLink className="nav-link active" aria-current="page" to="/home">Home</NavLink>
+                                    <NavLink activeClassName="fw-bold text-dark border-bottom border-danger border-2" className="nav-link fs-5 text-danger" aria-current="page" to="/home">Home</NavLink>
                                     </li>
                                     <li class="nav-item">
-                                    <NavLink className="nav-link" to="#">Features</NavLink>
-                                    </li>
-                                    <li class="nav-item">
-                                    <NavLink className="nav-link" to="#">Pricing</NavLink>
+                                    <NavLink activeClassName="fw-bold text-dark border-bottom border-danger border-2" className="nav-link fs-5 text-danger" to="/bikes">Bikes</NavLink>
                                     </li>
                                 </ul>
                             </div>

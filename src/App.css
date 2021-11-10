@@ -7,6 +7,19 @@
   pointer-events: none;
 }
 
+.safety-card:hover{
+  background: rgb(255,113,125);
+  background: linear-gradient(180deg, rgba(255,113,125,1) 35%, rgba(232,13,13,1) 100%);
+}
+.safety-card:hover .card-body h5{
+  color:white;
+}
+
+.footer-menu .menu-item:hover{
+  color: black !important;
+  border-radius: 3px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

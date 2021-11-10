@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-const Product = () => {
+const Bike = () => {
 
     return (
         <div>
@@ -16,13 +16,13 @@ const Product = () => {
                     <ListGroupItem className="text-danger fw-bold">Price In BDT: </ListGroupItem>
                 </ListGroup>
                 <Card.Body>
-                        <NavLink className="text-light" to="/productDetails">
-                            <Button variant="danger">More details</Button>
-                        </NavLink>
+                    <NavLink className="text-light" to="/productDetails">
+                        <Button variant="danger">More details</Button>
+                    </NavLink>
                 </Card.Body>
             </Card>
         </div>
     );
 };
 
-export default Product;
+export default Bike;
