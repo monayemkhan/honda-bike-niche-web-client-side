@@ -4,29 +4,56 @@ import Home from './Pages/Home/Home/Home';
 import Navigation from './Pages/Shared/Navigation/Navigation';
 import Footer from './Pages/Shared/Footer/Footer';
 import PageNotFound from './Pages/Shared/PageNotFound/PageNotFound';
-import Bikes from './Pages/Bikes/Bikes';
+import AllBike from './Pages/MoreBikes/MoreBikes';
+import Purchase from './Pages/Purchase/Purchase';
+import AddReview from './Pages/Dashboard/AddReview/AddReview';
+import AddBike from './Pages/Dashboard/AdminDashboard/AddBike/AddBike';
+import AuthProvider from './context/AuthProvider';
+import Login from './Pages/Shared/Login/Login/Login';
+import MyOrder from './Pages/Dashboard/MyOrder/MyOrder';
+import Register from './Pages/Shared/Login/Register/Register';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navigation></Navigation>
-        <Switch>
-          <Route exact path="/">
-            <Home></Home>
-          </Route>
-          <Route path="/home">
-            <Home></Home>
-          </Route>
-          <Route path="/bikes">
-            <Bikes></Bikes>
-          </Route>
-          <Route path="*">
-            <PageNotFound></PageNotFound>
-          </Route>
-        </Switch>
+      <AuthProvider>
+        <Router>
+          <Navigation></Navigation>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route path="/bikes">
+              <AllBike></AllBike>
+            </Route>
+            <Route path="/purchase">
+              <Purchase></Purchase>
+            </Route>
+            <Route path="/addBike">
+              <AddBike></AddBike>
+            </Route>
+            <Route path="/addReview">
+              <AddReview></AddReview>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/register">
+              <Register></Register>
+            </Route>
+            <Route path="/myOrder">
+              <MyOrder></MyOrder>
+            </Route>
+            <Route path="*">
+              <PageNotFound></PageNotFound>
+            </Route>
+          </Switch>
           <Footer></Footer>
-      </Router>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

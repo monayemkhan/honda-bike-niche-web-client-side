@@ -6,6 +6,7 @@ import Safety from '../Safety/Safety';
 
 const Home = () => {
     return (
+        // added home section component
         <div>
             <Banner></Banner>
             <Bikes></Bikes>

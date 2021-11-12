@@ -3,8 +3,9 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 const Safety = () => {
     return (
+        // this is safety section 
         <Container className="my-5">
-            <h2 className="fs-1 fw-bold text-danger">Make Sure Before Ride</h2>
+            <h2 className="text-uppercase fw-bold">Make Sure Before Ride</h2>
             <Row className="mt-4">
                 <Col md={3}>
                     <div className="card border-danger mb-3 safety-card" >
