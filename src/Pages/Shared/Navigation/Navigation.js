@@ -33,6 +33,9 @@ const Navigation = () => {
                                     <li class="nav-item">
                                         <NavLink activeClassName="fw-bold text-dark border-bottom border-danger border-2" className="nav-link fs-5 text-danger" to="/bikes">More Bike</NavLink>
                                     </li>
+                                    <li class="nav-item">
+                                        <NavLink activeClassName="fw-bold text-dark border-bottom border-danger border-2" className="nav-link fs-5 text-danger" to="/dashboardHome">Dashboard</NavLink>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

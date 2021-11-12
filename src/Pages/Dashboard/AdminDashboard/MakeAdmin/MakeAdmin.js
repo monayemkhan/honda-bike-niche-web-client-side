@@ -34,31 +34,25 @@ const MakeAdmin = () => {
 
     return (
         <>
-            <Container>
+            <Container className="my-5 w-75">
                 <Row>
-                    <Card className="bg-mi text-center">
-                        <Card.Header>
-                            <Card.Title className="text-light ">Create A New Admin</Card.Title>
-                        </Card.Header>
+                    <Card className="text-center">
+                        <h4 className="mt-3">Create A New Admin</h4>
                         <Card.Body>
-                            <form className="p-2" onSubmit={handleAdminSubmit}>
+                            <form className="" onSubmit={handleAdminSubmit}>
                                 <input
                                     className="form-control m-3"
-                                    placeholder="Enter Your Name"
+                                    placeholder="Enter User Email"
                                     type="email"
                                     name="email"
                                     onChange={handleOnBlur}
                                 />
-
                                 <Button
                                     type="submit"
-                                    variant="info"
-                                    className="me-3"
+                                    variant="outline-danger"
                                 >Create Admin</Button>
-
                             </form>
                             {success && <Alert variant="success">Admin Created successfully!</Alert>}
-
                         </Card.Body>
                     </Card>
                 </Row>
