@@ -12,6 +12,8 @@ import AuthProvider from './context/AuthProvider';
 import Login from './Pages/Shared/Login/Login/Login';
 import MyOrder from './Pages/Dashboard/MyOrder/MyOrder';
 import Register from './Pages/Shared/Login/Register/Register';
+import ManageAllOrder from './Pages/Dashboard/AdminDashboard/ManageAllOrder/ManageAllOrder';
+import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome';
 
 function App() {
   return (
@@ -44,8 +46,14 @@ function App() {
             <Route path="/register">
               <Register></Register>
             </Route>
+            <Route path="/dashboardHome">
+              <DashboardHome></DashboardHome>
+            </Route>
             <Route path="/myOrder">
               <MyOrder></MyOrder>
+            </Route>
+            <Route path="/manageAllOrder">
+              <ManageAllOrder></ManageAllOrder>
             </Route>
             <Route path="*">
               <PageNotFound></PageNotFound>

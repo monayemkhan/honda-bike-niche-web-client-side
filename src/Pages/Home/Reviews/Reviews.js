@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import Review from './Review/Review';
+import Review from '../Review/Review';
 
 const Reviews = () => {
     const [reviews, setReview] = useState([]);
