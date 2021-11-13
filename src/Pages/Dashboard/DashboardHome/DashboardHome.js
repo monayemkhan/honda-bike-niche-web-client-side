@@ -1,60 +1,132 @@
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { Button, Col, Container, ListGroup, Offcanvas, Row } from 'react-bootstrap';
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import AdminRoute from '../../Shared/Login/AdminRoute/AdminRoute';
+import PrivateRoute from '../../Shared/Login/PrivateRoute/PrivateRoute';
 import AddReview from '../AddReview/AddReview';
 import AddBike from '../AdminDashboard/AddBike/AddBike';
 import MakeAdmin from '../AdminDashboard/MakeAdmin/MakeAdmin';
 import ManageAllOrder from '../AdminDashboard/ManageAllOrder/ManageAllOrder';
 import MyOrder from '../MyOrder/MyOrder';
+import Pay from '../pay/Pay';
 
-// http://localhost:5000/
+
 const DashboardHome = () => {
-    const [control, setControl] = useState("allorders");
+    const [show, setShow] = useState(false);
+    const { user, logout, isLoading, admin } = useAuth();
+    let { path, url } = useRouteMatch();
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <>
-            <Container fluid className="bg-danger">
-                <Row>
-                    <Col className="text-center text-light py-2">
-                        <h2 className="text-uppercase fw-bold">DahsBoard</h2>
-                    </Col>
-                </Row>
-            </Container>
-            <Container fluid className="mt-">
-                <Row className="row ">
-                    <Col className="col-md-3 bg-dark">
-                        <div className=" p-1">
-                            <div className="my-3 mx-5">
-                                {/* list item */}
-                                <ListGroup as="ul">
-                                    <ListGroup.Item as="li" onClick={() => setControl("myOrder")}>
-                                        My Orders
-                                    </ListGroup.Item>
-                                    <ListGroup.Item as="li" onClick={() => setControl("addReview")}>
-                                        Add Review
-                                    </ListGroup.Item>
-                                    <ListGroup.Item as="li" onClick={() => setControl("manageAllOrder")} >
-                                        Manage All Order
-                                    </ListGroup.Item>
-                                    <ListGroup.Item as="li" onClick={() => setControl("addBike")} >
+            <Offcanvas className="bg-danger" show={show} onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                    {/* <Offcanvas.Title className=" fw-bold text-light">Menu</Offcanvas.Title> */}
+                    {user?.displayName ?
+                        <Offcanvas.Title className=" fw-bold text-light">
+                            <h6 className="text-light">Name: {user?.displayName}</h6>
+                            <p className="text-light">Email: {user?.email}</p>
+                        </Offcanvas.Title>
+                        :
+                        ''
+                    }
+                </Offcanvas.Header>
+                <Offcanvas.Body className="">
+                    <ListGroup as="ul" className="my-5">
+                        <Link to="/">
+                            <ListGroup.Item className="bg-transparent border-bottom fw-bold text-light" as="li"  >
+                                <Button className="text-light fw-bold fs-5" variant="transparent">
+                                    Home
+                                </Button>
+                            </ListGroup.Item>
+                        </Link>
+                        <Link to={`${url}/myorder/${user?.email}`}>
+                            <ListGroup.Item className="bg-transparent border-bottom fw-bold text-light" as="li"  >
+                                <Button className="text-light fw-bold fs-5" variant="transparent">
+                                    My Orders
+                                </Button>
+                            </ListGroup.Item>
+                        </Link>
+                        <Link to={`${url}/addReviews`}>
+                            <ListGroup.Item className="bg-transparent border-bottom border-0  fw-bold text-light py-1 my-1" as="li"  >
+                                <Button className="text-light fw-bold fs-5" variant="transparent">
+                                    Add Reviews
+                                </Button>
+                            </ListGroup.Item>
+                        </Link>
+                        {admin &&
+                            <Link to={`${url}/manageAllOrders`}>
+                                <ListGroup.Item className="bg-transparent border-bottom border-0  fw-bold text-light py-1 my-1" as="li"  >
+                                    <Button className="text-light fw-bold fs-5" variant="transparent">
+                                        All Orders
+                                    </Button>
+                                </ListGroup.Item>
+                            </Link>
+                        }
+                        {admin &&
+                            <Link to={`${url}/addBike`}>
+                                <ListGroup.Item className="bg-transparent border-bottom border-0  fw-bold text-light py-1 my-1" as="li"  >
+                                    <Button className="text-light fw-bold fs-5" variant="transparent">
                                         Add Bike
-                                    </ListGroup.Item>
-                                    <ListGroup.Item as="li" onClick={() => setControl("makeAdmin")} >
+                                    </Button>
+                                </ListGroup.Item>
+                            </Link>
+                        }
+                        {admin &&
+                            <Link to={`${url}/makeAdmin`}>
+                                <ListGroup.Item className="bg-transparent border-bottom border-0  fw-bold text-light py-1 my-1" as="li"  >
+                                    <Button className="text-light fw-bold fs-5" variant="transparent">
                                         Make Admin
-                                    </ListGroup.Item>
-                                </ListGroup>
-                            </div>
-                        </div>
-                    </Col>
+                                    </Button>
+                                </ListGroup.Item>
+                            </Link>
+                        }
+                        <Link to={`${url}/pay`}>
+                            <ListGroup.Item className="bg-transparent border-bottom border-0  fw-bold text-light py-1 my-1" as="li"  >
+                                <Button className="text-light fw-bold fs-5" variant="transparent">
+                                    Payment Method
+                                </Button>
+                            </ListGroup.Item>
+                        </Link>
+                        <ListGroup.Item className="bg-transparent border-bottom border-0  fw-bold text-light py-1 my-1" as="li"  >
+                            <Button onClick={logout} className="text-light fw-bold fs-5" variant="transparent" >Log Out</Button>
+                        </ListGroup.Item>
 
-                    {/* show the data */}
-                    <div className="col-md-9 text-center text-center">
-                        {control === "myOrder" && <MyOrder></MyOrder>}
-                        {control === "addReview" && <AddReview></AddReview>}
-                        {control === "manageAllOrder" && <ManageAllOrder></ManageAllOrder>}
-                        {control === "addBike" && <AddBike></AddBike>}
-                        {control === "makeAdmin" && <MakeAdmin></MakeAdmin>}
-                    </div>
-                </Row>
+                    </ListGroup>
+                </Offcanvas.Body>
+            </Offcanvas>
+
+            <div className="p-3 text-start">
+                <Button className="ms-5" variant="outline-dark" onClick={handleShow}>
+                    Open Dashboard Menu <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+                </Button>
+            </div>
+
+            <Container fluid className="mt-">
+                <Switch>
+                    <PrivateRoute path={`${path}/myOrder/:email`}>
+                        <MyOrder></MyOrder>
+                    </PrivateRoute>
+                    <Route path={`${path}/pay`}>
+                        <Pay></Pay>
+                    </Route>
+                    <PrivateRoute path={`${path}/addreviews`}>
+                        <AddReview></AddReview>
+                    </PrivateRoute>
+                    <Route path={`${path}/manageAllOrders`}>
+                        <ManageAllOrder></ManageAllOrder>
+                    </Route>
+                    <PrivateRoute path={`${path}/addmobiles`}>
+                        <AddBike></AddBike>
+                    </PrivateRoute>
+                    <AdminRoute path={`${path}/makeAdmin`}>
+                        <MakeAdmin></MakeAdmin>
+                    </AdminRoute>
+                </Switch>
             </Container>
         </>
     );

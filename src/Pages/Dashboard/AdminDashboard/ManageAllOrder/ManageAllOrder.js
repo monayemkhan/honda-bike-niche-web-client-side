@@ -30,10 +30,9 @@ const ManageAllOrder = () => {
                     setControl(false);
                 }
             });
-
     };
 
-    // UPDATE status
+    // handle update status
     const handleUpdateStatus = (id) => {
         const updated = { status: 'Approved' }
         //update order status
@@ -45,15 +44,15 @@ const ManageAllOrder = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    alert('Order approved');
+                    alert('Order Shifted...');
                     window.location.reload()
-
                 }
             });
         console.log(id);
     };
 
     return (
+        // manage all order section
         <div>
             <Container className="my-5 border border-danger rounded-3">
                 <Row>
@@ -83,7 +82,7 @@ const ManageAllOrder = () => {
                                             onClick={() => handleUpdateStatus(order?._id)}
                                             className="btn btn-outline-danger  p-2"
                                         >
-                                            Approved
+                                            Shifted
                                         </button>
                                     </td>
                                     <td>

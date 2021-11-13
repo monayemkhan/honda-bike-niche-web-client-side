@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 const AddBike = () => {
     const { register, handleSubmit, reset } = useForm();
-
+    // handle bike form
     const onSubmit = data => {
         axios.post('http://localhost:5000/bikes', data)
             .then(res => {

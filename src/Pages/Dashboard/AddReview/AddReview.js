@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 const AddReview = () => {
     const { register, handleSubmit, reset } = useForm();
 
+    // handle reviews form
     const onSubmit = data => {
-
         axios.post('http://localhost:5000/reviews', data)
             .then(res => {
                 if (res.data.insertedId) {
@@ -26,8 +26,8 @@ const AddReview = () => {
                         <div>
                             <form className="p-3" onSubmit={handleSubmit(onSubmit)}>
                                 <input className="form-control m-2" placeholder="User image" type="text" {...register("img")} />
-                                <input className="form-control m-2" placeholder="User name" type="text" {...register("name")} />
-                                <input className="form-control m-2" placeholder="Rating" type="number" {...register("rating")} min="0" max="5" />
+                                <input className="form-control m-2" placeholder="User name" type="text" {...register("name", { required: true, maxLength: 40 })} />
+                                <input className="form-control m-2" placeholder="Rating" type="number" {...register("rating", { min: 0, max: 5 })} min="0" max="5" />
                                 <textarea className="form-control m-2" placeholder="Type Your Review max length 100 " {...register("review", { required: true, maxLength: 100 })} />
                                 <input className="btn btn-danger mt-3" type="submit" />
                             </form>

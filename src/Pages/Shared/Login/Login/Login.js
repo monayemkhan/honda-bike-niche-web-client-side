@@ -57,12 +57,12 @@ const Login = () => {
                         </NavLink>
                         {isLoading && <Spinner animation="border" variant="danger" />}
                         {
-                            user?.email && <Alert variant="success"> log In successfully</Alert>
+                            user?.email && <Alert variant="success">log In successfully</Alert>
                         }
                         <Button
                             onClick={handleGoogleSignIn}
-                            className="bg-primary my-5 fs-4"
-                        >Google Sign In</Button>
+                            className="bg-primary my-5 fs-5"
+                        >Log In Google</Button>
                     </form>
                 </Row>
             </Container>
