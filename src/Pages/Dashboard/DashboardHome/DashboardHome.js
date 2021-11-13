@@ -23,7 +23,7 @@ const DashboardHome = () => {
                 <Row className="row ">
                     <Col className="col-md-3 bg-dark">
                         <div className=" p-1">
-                            <div className="mt-3">
+                            <div className="my-3 mx-5">
                                 {/* list item */}
                                 <ListGroup as="ul">
                                     <ListGroup.Item as="li" onClick={() => setControl("myOrder")}>
@@ -35,7 +35,6 @@ const DashboardHome = () => {
                                     <ListGroup.Item as="li" onClick={() => setControl("manageAllOrder")} >
                                         Manage All Order
                                     </ListGroup.Item>
-
                                     <ListGroup.Item as="li" onClick={() => setControl("addBike")} >
                                         Add Bike
                                     </ListGroup.Item>

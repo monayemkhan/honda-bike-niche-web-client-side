@@ -55,10 +55,10 @@ const ManageAllOrder = () => {
 
     return (
         <div>
-            <Container>
+            <Container className="my-5 border border-danger rounded-3">
                 <Row>
-                    <h1>ALL Orders: {orders?.length}</h1>
-                    <Table striped bordered hover>
+                    <h4 className="text-uppercase bg-danger text-light p-2">All Order: {orders?.length}</h4>
+                    <Table striped bordered hover className="mb-5">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -94,7 +94,6 @@ const ManageAllOrder = () => {
                                             <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
                                         </button>
                                     </td>
-
                                 </tr>
                             </tbody>
                         ))}

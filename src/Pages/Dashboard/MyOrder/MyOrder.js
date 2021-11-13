@@ -35,7 +35,7 @@ const MyOrder = () => {
         <>
             <Container className="my-5 border border-danger rounded-3">
                 <Row className="">
-                    <h2 className="text-uppercase bg-danger text-light p-3">My Orders: {orders?.length}</h2>
+                    <h4 className="text-uppercase bg-danger text-light p-2">My Orders: {orders?.length}</h4>
                     <Table striped bordered hover className="mb-5">
                         <thead>
                             <tr>
