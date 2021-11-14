@@ -2,6 +2,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Table } from 'react-bootstrap';
+import useAuth from '../../../../hooks/useAuth';
 
 const ManageAllOrder = () => {
     const [orders, setOrders] = useState([]);
@@ -9,7 +10,7 @@ const ManageAllOrder = () => {
 
     //get all order
     useEffect(() => {
-        fetch("http://localhost:5000/orders")
+        fetch(`http://localhost:5000/orders`)
             .then((res) => res.json())
             .then((data) => setOrders(data));
     }, [control]);
@@ -32,9 +33,9 @@ const ManageAllOrder = () => {
             });
     };
 
-    // handle update status
+    // UPDATE status
     const handleUpdateStatus = (id) => {
-        const updated = { status: 'Approved' }
+        const updated = { bike_status: 'Shipped' }
         //update order status
         fetch(`http://localhost:5000/updateOrder/${id}`, {
             method: 'PUT',
@@ -44,11 +45,12 @@ const ManageAllOrder = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    alert('Order Shifted...');
+                    alert('Order Shipped');
                     window.location.reload()
+
                 }
             });
-        console.log(id);
+
     };
 
     return (
@@ -57,13 +59,14 @@ const ManageAllOrder = () => {
             <Container className="my-5 border border-danger rounded-3">
                 <Row>
                     <h4 className="text-uppercase bg-danger text-light p-2">All Order: {orders?.length}</h4>
-                    <Table striped bordered hover className="mb-5">
+                    <Table striped bordered hover className="">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Date</th>
+                                <th>Price</th>
+                                <th>Address</th>
                                 <th>Status</th>
                                 <th>Update</th>
                                 <th>Action</th>
@@ -73,16 +76,17 @@ const ManageAllOrder = () => {
                             <tbody>
                                 <tr>
                                     <td>{index}</td>
-                                    <td>{order?.name}</td>
-                                    <td>{order?.email}</td>
-                                    <td>{order?.date}</td>
-                                    <td>{order?.status}</td>
+                                    <td>{order?.bike_name}</td>
+                                    <td>{order?.user_email}</td>
+                                    <td>{order?.bike_price}</td>
+                                    <td>{order?.user_address}</td>
+                                    <td>{order?.bike_status}</td>
                                     <td>
                                         <button
                                             onClick={() => handleUpdateStatus(order?._id)}
-                                            className="btn btn-outline-danger  p-2"
+                                            className="btn btn-outline-danger p-2"
                                         >
-                                            Shifted
+                                            Shipped
                                         </button>
                                     </td>
                                     <td>
@@ -99,7 +103,7 @@ const ManageAllOrder = () => {
                     </Table>
                 </Row>
             </Container>
-        </div>
+        </div >
     );
 };
 

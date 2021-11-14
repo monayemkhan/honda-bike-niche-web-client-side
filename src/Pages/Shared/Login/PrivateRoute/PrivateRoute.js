@@ -1,9 +1,9 @@
-import React, { Children, rest } from 'react';
+import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Redirect, Route } from 'react-router';
 import useAuth from '../../../../hooks/useAuth';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children, ...rest }) => {
     const { user, isLoading } = useAuth();
     if (isLoading) {
         return (
@@ -21,7 +21,7 @@ const PrivateRoute = () => {
     return (
         <Route
             {...rest}
-            render={({ location }) => user.email ? (Children) : (
+            render={({ location }) => user.email ? (children) : (
                 <Redirect
                     to={{
                         pathname: "/login",

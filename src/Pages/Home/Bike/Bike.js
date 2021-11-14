@@ -7,9 +7,9 @@ const Bike = (props) => {
 
     return (
         // this is bike section 
-        <Col md={4}>
+        <Col md={4} className="my-3">
             {/* bike card */}
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '20rem' }}>
                 <Card.Img variant="top" src={img} />
                 <Card.Header>{name}</Card.Header>
                 <ListGroup className="list-group-flush">

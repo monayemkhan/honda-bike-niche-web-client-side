@@ -5,16 +5,21 @@ import { Container, Row, Table } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
 
 const MyOrder = () => {
-    const { user } = useAuth();
+    const { user, token } = useAuth();
     const [orders, setOrders] = useState([]);
     const [control, setControl] = useState(false);
 
     //get my order data
     useEffect(() => {
-        fetch(`http://localhost:5000/${user?.email}`)
+        fetch(`http://localhost:5000/myOrder?email=${user.email}`, {
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
+        })
             .then(res => res.json())
             .then(data => setOrders(data));
-    }, [user?.email]);
+
+    }, [user.email, token, control]);
 
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/deleteOrder/${id}`, {
@@ -24,7 +29,9 @@ const MyOrder = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.deletedCount) {
-                    setControl(!control);
+                    if (window.confirm('Are You Sure to Delete Order?')) {
+                        setControl(!control);
+                    }
                 } else {
                     setControl(false);
                 }
@@ -35,14 +42,16 @@ const MyOrder = () => {
         <>
             <Container className="my-5 border border-danger rounded-3">
                 <Row className="">
-                    <h4 className="text-uppercase bg-danger text-light p-2">My Orders: {orders?.length}</h4>
+                    <h4 className="text-uppercase bg-danger text-light p-2">My Orders</h4>
                     <Table striped bordered hover className="mb-5">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Date</th>
+                                <th>Price</th>
+                                <th>Address</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,9 +59,11 @@ const MyOrder = () => {
                             <tbody>
                                 <tr>
                                     <td>{index}</td>
-                                    <td>{myorder?.name}</td>
-                                    <td>{myorder?.email}</td>
-                                    <td>{myorder?.date}</td>
+                                    <td>{myorder?.bike_name}</td>
+                                    <td>{myorder?.user_email}</td>
+                                    <td>{myorder?.bike_price}</td>
+                                    <td>{myorder?.user_address}</td>
+                                    <td>{myorder?.bike_status}</td>
                                     <td>
                                         <button
                                             onClick={() => handleDelete(myorder?._id)}

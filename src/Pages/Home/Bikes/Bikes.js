@@ -6,7 +6,7 @@ const Bikes = () => {
     const [bikes, setBike] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/bikes')
+        fetch('http://localhost:5000/bikes/home')
             .then(res => res.json())
             .then(data => setBike(data))
     }, []);
@@ -21,7 +21,7 @@ const Bikes = () => {
                         <p className="text-secondary">The good news for Honda motorcycle users, fan-followers and well-wishers is that we have mentioned on this web page the current prices of Honda bikes or motorcycles in Bangladesh or BD, as well as the latest pictures and a brief description of each and every models which is currently available in Bangladesh.</p>
                     </Col>
                 </Row>
-                <Row className="">
+                <Row className=" mx-auto">
                     {
                         bikes.map(bike => <Bike
                             key={bike._id}

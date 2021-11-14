@@ -4,16 +4,15 @@ import Home from './Pages/Home/Home/Home';
 import Navigation from './Pages/Shared/Navigation/Navigation';
 import Footer from './Pages/Shared/Footer/Footer';
 import PageNotFound from './Pages/Shared/PageNotFound/PageNotFound';
-import AllBike from './Pages/MoreBikes/MoreBikes';
 import Purchase from './Pages/Purchase/Purchase';
-import AddReview from './Pages/Dashboard/AddReview/AddReview';
-import AddBike from './Pages/Dashboard/AdminDashboard/AddBike/AddBike';
 import AuthProvider from './context/AuthProvider';
 import Login from './Pages/Shared/Login/Login/Login';
-import MyOrder from './Pages/Dashboard/MyOrder/MyOrder';
 import Register from './Pages/Shared/Login/Register/Register';
-import ManageAllOrder from './Pages/Dashboard/AdminDashboard/ManageAllOrder/ManageAllOrder';
 import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome';
+import PrivateRoute from './Pages/Shared/Login/PrivateRoute/PrivateRoute';
+
+
+import MoreBikes from './Pages/MoreBikes/MoreBikes';
 
 function App() {
   return (
@@ -29,16 +28,7 @@ function App() {
               <Home></Home>
             </Route>
             <Route path="/bikes">
-              <AllBike></AllBike>
-            </Route>
-            <Route path="/purchase">
-              <Purchase></Purchase>
-            </Route>
-            <Route path="/addBike">
-              <AddBike></AddBike>
-            </Route>
-            <Route path="/addReview">
-              <AddReview></AddReview>
+              <MoreBikes></MoreBikes>
             </Route>
             <Route path="/login">
               <Login></Login>
@@ -49,12 +39,9 @@ function App() {
             <Route path="/dashboardHome">
               <DashboardHome></DashboardHome>
             </Route>
-            <Route path="/myOrder">
-              <MyOrder></MyOrder>
-            </Route>
-            <Route path="/manageAllOrder">
-              <ManageAllOrder></ManageAllOrder>
-            </Route>
+            <PrivateRoute path="/purchase/:bikeId">
+              <Purchase></Purchase>
+            </PrivateRoute>
             <Route path="*">
               <PageNotFound></PageNotFound>
             </Route>

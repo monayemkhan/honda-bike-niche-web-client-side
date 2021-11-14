@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Honda Bike 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project deployed on [Firebase: https://honda-bike-dc967.web.app/](https://honda-bike-dc967.web.app/).
 
-## Available Scripts
+## 
 
-In the project directory, you can run:
+In the project src folder user can find a pages folder.
+Here some short description or details of those folders.
 
-### `npm start`
+### App.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In App.js file you can see the Router of this website. I just simply rename the BrowserRoter as Router and I use Header Component before the Switch and footer after the Switch for show in all pages.I use NavLink instant of a tag for load the data without loading the site. And also use a private route for not accusable component 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Navigation
 
-### `npm test`
+In Navigation Component, site details added. 
+user can fiend here Two Services header div. One is top-header and header-bottom
+top-header contain Header information like "The propose of this project total Budget of the concert and a short text about project" and header-bottom contain site logo and navigation and as well as login button. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### My Booking
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+My order will show users (his/her) own data. Which is he/She order before. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Manage All Order
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Manage All Order will show everyone data. Which is a user ordered before. just admin can delete this data or shift.
 
-### `npm run eject`
+### Add Bike
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Admin can see a Add Bike. where admin can add a bike which will show on tha home bike. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Note:  Firebase Authentication are used for user Authentication and Authorization**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+for icon I use FontAwesome. And for css I use Bootstrap, React-Bootstrap and I also added some custom css. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Thanks Giving
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Thanks for visiting my node server project:smiley: :smiley: :smiley:*

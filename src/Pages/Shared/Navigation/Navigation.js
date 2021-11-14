@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 import logo from '../../../images/logo.png';
 
 const Navigation = () => {
-    const { user, logOut, signInWithGoogle, isLoading, authError } = useAuth();
+    const { user, logout, signInWithGoogle, isLoading, authError } = useAuth();
     return (
         // navbar/navigation section
         <div>
@@ -33,9 +33,9 @@ const Navigation = () => {
                                     <li class="nav-item">
                                         <NavLink activeClassName="fw-bold text-dark border-bottom border-danger border-2" className="nav-link fs-5 text-danger" to="/bikes">More Bike</NavLink>
                                     </li>
-                                    <li class="nav-item">
+                                    {user.email && <li class="nav-item">
                                         <NavLink activeClassName="fw-bold text-dark border-bottom border-danger border-2" className="nav-link fs-5 text-danger" to="/dashboardHome">Dashboard</NavLink>
-                                    </li>
+                                    </li>}
                                 </ul>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ const Navigation = () => {
                                 <li className="nav-item p-2">
                                     {user?.displayName ?
                                         <NavLink to="/login">
-                                            <button onClick={logOut} className="btn btn-outline-danger me-2 mt-2" ><FontAwesomeIcon icon={faSignOutAlt}></FontAwesomeIcon> </button>
+                                            <button onClick={logout} className="btn btn-outline-danger me-2 mt-2" ><FontAwesomeIcon icon={faSignOutAlt}></FontAwesomeIcon> </button>
                                         </NavLink>
                                         :
                                         <NavLink to="/login">

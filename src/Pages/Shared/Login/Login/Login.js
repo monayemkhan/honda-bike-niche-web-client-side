@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth'
 const Login = () => {
     const [loginData, setLoginData] = useState({});
-    const { user, loginUser, logOut, signInWithGoogle, isLoading, authError } = useAuth();
+    const { user, loginUser, signInWithGoogle, isLoading, authError } = useAuth();
 
     const location = useLocation();
     const history = useHistory();
@@ -16,6 +16,7 @@ const Login = () => {
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
         setLoginData(newLoginData);
+        console.log(newLoginData)
     }
     const handleLoginSubmit = e => {
         loginUser(loginData.email, loginData.password, location, history);
@@ -37,13 +38,15 @@ const Login = () => {
                             className="form-control m-3"
                             placeholder="Enter Your Name"
                             type="email"
-                            onChange={handleOnChange}
+                            name="email"
+                            onBlur={handleOnChange}
                         />
                         <input
                             className="form-control m-3"
                             placeholder="Enter Your Password"
                             type="password"
-                            onChange={handleOnChange}
+                            name="password"
+                            onBlur={handleOnChange}
                         />
                         <Button
                             className="fw-bold"
@@ -59,6 +62,7 @@ const Login = () => {
                         {
                             user?.email && <Alert variant="success">log In successfully</Alert>
                         }
+                        {authError && <Alert variant="danger">{authError}</Alert>}
                         <Button
                             onClick={handleGoogleSignIn}
                             className="bg-primary my-5 fs-5"

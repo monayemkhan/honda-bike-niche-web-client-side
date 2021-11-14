@@ -8,24 +8,25 @@ import useAuth from '../../hooks/useAuth';
 
 const Purchase = () => {
     const { user } = useAuth();
-
+    console.log(user)
     const { bikeId } = useParams();
     const { register, handleSubmit, reset } = useForm();
-    const [bikes, setBooking] = useState([]);
+    const [bikes, setBike] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/bikes/${bikeId}`)
+        fetch(`http://localhost:5000/purchase/${bikeId}`)
             .then(res => res.json())
-            .then(data => setBooking(data))
+            .then(data => setBike(data))
     }, [bikeId]);
 
     const onSubmit = data => {
         console.log(data)
-        axios.post('http://localhost:5000/bike', data)
+        axios.post('http://localhost:5000/addOrder', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Purchase Added Successfully');
                     reset();
+
                 }
 
             })
@@ -43,22 +44,22 @@ const Purchase = () => {
                 <Col md={7}>
                     <img className="mt-5" src={`https://www.banglamotor.net/images/honda/honda-cbr150r-repsol-first1.jpg`} alt="" />
                     <Card className="m-3">
-                        <Card.Header>Featured</Card.Header>
+                        <Card.Header>{bikes?.name}</Card.Header>
                         <ListGroup className="list-group-flush">
-                            <ListGroupItem>Engine: </ListGroupItem>
-                            <ListGroupItem>Top Speed: </ListGroupItem>
-                            <ListGroupItem>Mileage: </ListGroupItem>
-                            <ListGroupItem className="text-danger fw-bold">Price In BDT: </ListGroupItem>
+                            <ListGroupItem>Engine: {bikes?.engine}</ListGroupItem>
+                            <ListGroupItem>Top Speed: {bikes?.speed}</ListGroupItem>
+                            <ListGroupItem>Mileage: {bikes?.mileage}</ListGroupItem>
+                            <ListGroupItem className="text-danger fw-bold">Price In BDT: {bikes?.price}</ListGroupItem>
                         </ListGroup>
                         <Card.Body className="text-start">
                             <Card.Text> <h3>Body:</h3>
-                                <p className="text-secondary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur ea consectetur accusamus illo fugiat reiciendis totam qui dolore rerum excepturi.</p>
+                                <p className="text-secondary">{bikes?.body_details}</p>
                             </Card.Text>
                             <Card.Text> <h3>Tyre & Brakes:</h3>
-                                <p className="text-secondary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur ea consectetur accusamus illo fugiat reiciendis totam qui dolore rerum excepturi.</p>
+                                <p className="text-secondary">{bikes?.tb_details}</p>
                             </Card.Text>
                             <Card.Text> <h3>Engine Details:</h3>
-                                <p className="text-secondary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur ea consectetur accusamus illo fugiat reiciendis totam qui dolore rerum excepturi.</p>
+                                <p className="text-secondary">{bikes?.engine_details}</p>
                             </Card.Text>
                         </Card.Body>
                     </Card>
@@ -77,10 +78,9 @@ const Purchase = () => {
                                         <input className="form-control m-2" placeholder="User email" type="text" {...register("user_email")} defaultValue={user?.email} />
                                         <input className="form-control m-2" placeholder="Phone number" type="text" {...register("user_number")} />
                                         <textarea className="form-control m-2" placeholder="Address" {...register("user_address")} />
-                                        <input className="form-control m-2" placeholder="Bike price" type="number" {...register("user_name")} defaultValue={bikes?.price} />
-                                        <NavLink to="/myOrder">
-                                            <button type="button" className="btn btn-danger my-3 shadow">Purchase Now</button>
-                                        </NavLink>
+                                        <input className="form-control m-2" placeholder="Bike price" type="text" {...register("bike_price")} defaultValue={bikes?.price} />
+                                        <input className="form-control m-2" placeholder="Bike price" type="hidden" {...register("bike_status")} defaultValue="Pending" />
+                                        <input type="submit" value="Confirm" />
                                     </form>
                                 </div>
                             </div>

@@ -1,9 +1,9 @@
-import React, { Children, rest } from 'react';
+import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Redirect, Route } from 'react-router';
 import useAuth from '../../../../hooks/useAuth';
 
-const AdminRoute = () => {
+const AdminRoute = ({ children, ...rest }) => {
     const { user, admin, isLoading } = useAuth();
 
     if (isLoading) {
@@ -24,7 +24,7 @@ const AdminRoute = () => {
             {...rest}
             render={({ location }) =>
                 user.email && admin ? (
-                    Children
+                    children
                 ) : (
                     <Redirect
                         to={{

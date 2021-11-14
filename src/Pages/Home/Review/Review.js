@@ -1,8 +1,15 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+// import StarRatings from './react-star-ratings'
 
 const Review = (props) => {
-    const { img, name, rating, review } = props.review
+    const { name, profession, rating, review } = props?.review;
+
+    // changeRating(newRating, name); {
+    //     this.setState({
+    //         rating: newRating
+    //     });
+    // }
 
     return (
         <>
@@ -10,11 +17,15 @@ const Review = (props) => {
                 <Row>
                     <Col className="my-sm-3 my-md-3">
                         <Card>
-                            <Card.Img className="w-25 mx-auto rounded-circle mt-2" variant="top" src={img} />
                             <Card.Body>
                                 <Card.Title>{name}</Card.Title>
+                                <Card.Text>{profession}</Card.Text>
                                 <Card.Title>
-                                    {rating}
+                                    {/* <StarRatings
+                                        rating={parseFloat(rating)}
+                                        starDimension="20px"
+                                        starSpacing="5px"
+                                    /> */}
                                 </Card.Title>
                                 <Card.Text>{review}</Card.Text>
                             </Card.Body>

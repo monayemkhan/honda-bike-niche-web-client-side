@@ -9,7 +9,7 @@ const MakeAdmin = () => {
 
     const handleOnBlur = e => {
         setEmail(e.target.value);
-
+        console.log("e", e.target.value)
     }
 
     const handleAdminSubmit = e => {
@@ -17,7 +17,7 @@ const MakeAdmin = () => {
         fetch('http://localhost:5000/users/admin', {
             method: 'PUT',
             headers: {
-                'authorization': 'Bearer ${ token }',
+                'authorization': `Bearer ${token}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)
@@ -45,7 +45,7 @@ const MakeAdmin = () => {
                                     placeholder="Enter User Email"
                                     type="email"
                                     name="email"
-                                    onChange={handleOnBlur}
+                                    onBlur={handleOnBlur}
                                 />
                                 <Button
                                     type="submit"
