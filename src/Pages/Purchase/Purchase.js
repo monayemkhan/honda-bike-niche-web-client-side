@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, Col, Container, ListGroup, ListGroupItem, Nav, Row } from 'react-bootstrap';
+import { Card, Col, Container, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
-import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Purchase = () => {
@@ -13,15 +12,16 @@ const Purchase = () => {
     const { register, handleSubmit, reset } = useForm();
     const [bikes, setBike] = useState([]);
 
+    // using useEffect
     useEffect(() => {
-        fetch(`http://localhost:5000/purchase/${bikeId}`)
+        fetch(`https://fierce-castle-66914.herokuapp.com/purchase/${bikeId}`)
             .then(res => res.json())
             .then(data => setBike(data))
     }, [bikeId]);
 
+    // on submit using axios 
     const onSubmit = data => {
-        console.log(data)
-        axios.post('http://localhost:5000/addOrder', data)
+        axios.post('https://fierce-castle-66914.herokuapp.com/addOrder', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Purchase Added Successfully');
@@ -31,6 +31,7 @@ const Purchase = () => {
 
             })
     };
+
     return (
         // this is purchase page
         <Container className="border border-danger rounded-2 my-5">
@@ -80,7 +81,7 @@ const Purchase = () => {
                                         <textarea className="form-control m-2" placeholder="Address" {...register("user_address")} />
                                         <input className="form-control m-2" placeholder="Bike price" type="text" {...register("bike_price")} defaultValue={bikes?.price} />
                                         <input className="form-control m-2" placeholder="Bike price" type="hidden" {...register("bike_status")} defaultValue="Pending" />
-                                        <input type="submit" value="Confirm" />
+                                        <input className="btn btn-danger my-3" type="submit" value="Confirm" />
                                     </form>
                                 </div>
                             </div>

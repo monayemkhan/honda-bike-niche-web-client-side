@@ -14,7 +14,7 @@ const MakeAdmin = () => {
 
     const handleAdminSubmit = e => {
         const user = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://fierce-castle-66914.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,
@@ -35,9 +35,9 @@ const MakeAdmin = () => {
     return (
         <>
             <Container className="my-5 w-75">
-                <Row>
+                <Row className="border rounded-3 border-danger shadow-lg">
                     <Card className="text-center">
-                        <h4 className="mt-3">Create A New Admin</h4>
+                        <h4 className="text-uppercase fw-bold mb-3 py-3 bg-danger text-light">Create A New Admin</h4>
                         <Card.Body>
                             <form className="" onSubmit={handleAdminSubmit}>
                                 <input

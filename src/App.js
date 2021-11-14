@@ -10,8 +10,6 @@ import Login from './Pages/Shared/Login/Login/Login';
 import Register from './Pages/Shared/Login/Register/Register';
 import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome';
 import PrivateRoute from './Pages/Shared/Login/PrivateRoute/PrivateRoute';
-
-
 import MoreBikes from './Pages/MoreBikes/MoreBikes';
 
 function App() {

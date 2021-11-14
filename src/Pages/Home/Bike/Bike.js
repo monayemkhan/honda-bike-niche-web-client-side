@@ -6,7 +6,7 @@ const Bike = (props) => {
     const { _id, img, name, engine, speed, mileage, price } = props.bike;
 
     return (
-        // this is bike section 
+        // this is bike component
         <Col md={4} className="my-3">
             {/* bike card */}
             <Card style={{ width: '20rem' }}>

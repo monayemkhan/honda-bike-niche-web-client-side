@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 
 const AddBike = () => {
     const { register, handleSubmit, reset } = useForm();
+
     // handle bike form
     const onSubmit = data => {
-        axios.post('http://localhost:5000/bikes', data)
+        axios.post('https://fierce-castle-66914.herokuapp.com/bikes', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('bike Added Successfully');
@@ -14,15 +15,16 @@ const AddBike = () => {
                 }
             })
     };
+
     return (
         <>
             {/* add bike form */}
             <div className="container my-5">
                 <div className="row w-75 mx-auto">
                     <div className="border border-2 rounded-3 border-danger shadow-lg">
-                        <h2 className="fs-1 fw-bold my-3">Add Bike</h2>
-                        <p>Please fill the form with all info</p>
+                        <h4 className="text-uppercase fw-bold mb-3 py-3 bg-danger text-light">Add Bike</h4>
                         <div>
+                            <p>Please fill the form with all info</p>
                             <form className="p-3" onSubmit={handleSubmit(onSubmit)}>
                                 <input className="form-control m-2" placeholder="Bike image URL" type="text" {...register("img")} />
                                 <input className="form-control m-2" placeholder="Bike name" type="text" {...register("name", { required: true })} />

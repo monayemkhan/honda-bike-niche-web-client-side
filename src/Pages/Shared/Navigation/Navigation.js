@@ -6,7 +6,8 @@ import useAuth from '../../../hooks/useAuth';
 import logo from '../../../images/logo.png';
 
 const Navigation = () => {
-    const { user, logout, signInWithGoogle, isLoading, authError } = useAuth();
+    const { user, logout } = useAuth();
+
     return (
         // navbar/navigation section
         <div>
@@ -52,7 +53,6 @@ const Navigation = () => {
                                             <button className="btn btn-outline-danger mt-2" ><FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon></button>
                                         </NavLink>
                                     }
-
                                 </li>
                                 {user?.displayName ?
                                     <li className="nav-item mt-4">

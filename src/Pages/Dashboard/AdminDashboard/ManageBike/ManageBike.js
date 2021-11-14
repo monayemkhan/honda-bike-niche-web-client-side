@@ -1,21 +1,23 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Table } from 'react-bootstrap';
+import { Container, Row, Spinner, Table } from 'react-bootstrap';
+import useAuth from '../../../../hooks/useAuth';
 
 const ManageBike = () => {
     const [bikes, setBike] = useState([]);
     const [control, setControl] = useState(false);
+    const { isLoading } = useAuth();
 
     //get all product
     useEffect(() => {
-        fetch("http://localhost:5000/bikes")
+        fetch("https://fierce-castle-66914.herokuapp.com/bikes")
             .then((res) => res.json())
             .then((data) => setBike(data));
     }, [control]);
     //delete product
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/bikes/${id}`, {
+        fetch(`https://fierce-castle-66914.herokuapp.com/bikes/${id}`, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
         })
@@ -33,40 +35,42 @@ const ManageBike = () => {
     };
 
     return (
-        <Container>
-            <Row>
-                <h1 className="text-mi text-center">All Bike: {bikes?.length}</h1>
-                <Table className="text-mi " striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    {bikes?.map((bikes, index) => (
-                        <tbody className="text-mi">
+        <>
+            <Container className="border border-2 rounded-3 border-danger shadow-lg my-5">
+                {isLoading && <Spinner className="d-block mx-auto my-3" animation="border" variant="danger" />}
+                <Row>
+                    <h4 className="text-uppercase fw-bold py-3 bg-danger text-light">All Bike</h4>
+                    <Table striped bordered hover className="p-3">
+                        <thead>
                             <tr>
-                                <td>{index}</td>
-                                <td>{bikes?.name}</td>
-                                <td>{bikes?.Price}</td>
-
-                                <td>
-                                    <button
-                                        onClick={() => handleDelete(bikes?._id)}
-                                        className="btn btn-outline-danger  p-2"
-                                    >
-                                        <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
-                                    </button>
-                                </td>
-
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Action</th>
                             </tr>
-                        </tbody>
-                    ))}
-                </Table>
-            </Row>
-        </Container>
+                        </thead>
+                        {bikes?.map((bikes, index) => (
+                            <tbody className="text-mi">
+                                <tr>
+                                    <td>{index}</td>
+                                    <td>{bikes?.name}</td>
+                                    <td>{bikes?.price}</td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(bikes?._id)}
+                                            className="btn btn-outline-danger"
+                                        >
+                                            <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        ))}
+                    </Table>
+                </Row>
+            </Container>
+        </>
     );
 };
 

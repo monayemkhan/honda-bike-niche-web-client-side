@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
+import useAuth from '../../hooks/useAuth';
 import Bike from '../Home/Bike/Bike';
 
 const MoreBikes = () => {
     const [bikes, setBike] = useState([]);
+    const { isLoading } = useAuth();
 
+    // using useEffect
     useEffect(() => {
-        fetch('http://localhost:5000/bikes')
+        fetch('https://fierce-castle-66914.herokuapp.com/bikes')
             .then(res => res.json())
             .then(data => setBike(data))
     }, []);
@@ -20,6 +23,7 @@ const MoreBikes = () => {
                         <p className="text-secondary">The good news for Honda motorcycle users, fan-followers and well-wishers is that we have mentioned on this web page the current prices of Honda bikes or motorcycles in Bangladesh or BD, as well as the latest pictures and a brief description of each and every models which is currently available in Bangladesh.</p>
                     </Col>
                 </Row>
+                {isLoading && <Spinner className="d-block mx-auto my-3" animation="border" variant="danger" />}
                 <Row className="">
                     {
                         bikes.map(bike => <Bike

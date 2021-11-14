@@ -16,6 +16,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
+    // register user function
     const registerUser = (email, password, name, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
@@ -39,6 +40,7 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+    // log in user 
     const loginUser = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
@@ -53,6 +55,7 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+    // sign in with google
     const signInWithGoogle = (location, history) => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
@@ -86,8 +89,9 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [auth])
 
+    // using use effect
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://fierce-castle-66914.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -95,16 +99,17 @@ const useFirebase = () => {
     const logout = () => {
         setIsLoading(true);
         signOut(auth).then(() => {
-            // Sign-out successful.
+            // sign-out successful.
         }).catch((error) => {
-            // An error happened.
+            // an error happened.
         })
             .finally(() => setIsLoading(false));
     }
 
+    // save users
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('http://localhost:5000/users', {
+        fetch('https://fierce-castle-66914.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'

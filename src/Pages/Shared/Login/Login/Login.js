@@ -3,6 +3,7 @@ import { Alert, Button, Container, Row, Spinner } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth'
+
 const Login = () => {
     const [loginData, setLoginData] = useState({});
     const { user, loginUser, signInWithGoogle, isLoading, authError } = useAuth();
@@ -10,19 +11,20 @@ const Login = () => {
     const location = useLocation();
     const history = useHistory();
 
+    // handle onChange
     const handleOnChange = e => {
         const field = e.target.name;
         const value = e.target.value;
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
         setLoginData(newLoginData);
-        console.log(newLoginData)
     }
+    // handle log in submit
     const handleLoginSubmit = e => {
         loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
-
+    // handle google sign in
     const handleGoogleSignIn = () => {
         signInWithGoogle(location, history)
     }
@@ -48,6 +50,7 @@ const Login = () => {
                             name="password"
                             onBlur={handleOnChange}
                         />
+                        {isLoading && <Spinner className="d-block mx-auto my-3" animation="border" variant="danger" />}
                         <Button
                             className="fw-bold"
                             type="submit"
@@ -58,7 +61,6 @@ const Login = () => {
                             to="/register">
                             <p className="my-3 fs-5">New User? Please Register</p>
                         </NavLink>
-                        {isLoading && <Spinner animation="border" variant="danger" />}
                         {
                             user?.email && <Alert variant="success">log In successfully</Alert>
                         }

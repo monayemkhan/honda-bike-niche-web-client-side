@@ -1,23 +1,24 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Table } from 'react-bootstrap';
+import { Container, Row, Spinner, Table } from 'react-bootstrap';
 import useAuth from '../../../../hooks/useAuth';
 
 const ManageAllOrder = () => {
     const [orders, setOrders] = useState([]);
     const [control, setControl] = useState(false);
+    const { isLoading } = useAuth();
 
     //get all order
     useEffect(() => {
-        fetch(`http://localhost:5000/orders`)
+        fetch(`https://fierce-castle-66914.herokuapp.com/orders`)
             .then((res) => res.json())
             .then((data) => setOrders(data));
     }, [control]);
 
     //delete order
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/deleteOrder/${id}`, {
+        fetch(`https://fierce-castle-66914.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
         })
@@ -37,7 +38,7 @@ const ManageAllOrder = () => {
     const handleUpdateStatus = (id) => {
         const updated = { bike_status: 'Shipped' }
         //update order status
-        fetch(`http://localhost:5000/updateOrder/${id}`, {
+        fetch(`https://fierce-castle-66914.herokuapp.com/updateOrder/${id}`, {
             method: 'PUT',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(updated)
@@ -56,9 +57,10 @@ const ManageAllOrder = () => {
     return (
         // manage all order section
         <div>
+            {isLoading && <Spinner className="d-block mx-auto my-3" animation="border" variant="danger" />}
             <Container className="my-5 border border-danger rounded-3">
                 <Row>
-                    <h4 className="text-uppercase bg-danger text-light p-2">All Order: {orders?.length}</h4>
+                    <h4 className="text-uppercase bg-danger text-light p-3 fw-bold">All Order: {orders?.length}</h4>
                     <Table striped bordered hover className="">
                         <thead>
                             <tr>

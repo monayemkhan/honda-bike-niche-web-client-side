@@ -11,7 +11,7 @@ const MyOrder = () => {
 
     //get my order data
     useEffect(() => {
-        fetch(`http://localhost:5000/myOrder?email=${user.email}`, {
+        fetch(`https://fierce-castle-66914.herokuapp.com/myOrder?email=${user.email}`, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -21,8 +21,9 @@ const MyOrder = () => {
 
     }, [user.email, token, control]);
 
+    // my order handle function
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/deleteOrder/${id}`, {
+        fetch(`https://fierce-castle-66914.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
         })
@@ -39,11 +40,12 @@ const MyOrder = () => {
     };
 
     return (
+        // my order component
         <>
             <Container className="my-5 border border-danger rounded-3">
                 <Row className="">
-                    <h4 className="text-uppercase bg-danger text-light p-2">My Orders</h4>
-                    <Table striped bordered hover className="mb-5">
+                    <h4 className="text-uppercase bg-danger text-light p-3 fw-bold">My Orders</h4>
+                    <Table striped bordered hover>
                         <thead>
                             <tr>
                                 <th>#</th>

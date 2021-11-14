@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const MoreBike = () => {
     const { _id, img, name, engine, speed, mileage, price } = props.bike;
+
     return (
         <Col md={4}>
             {/* bike card */}

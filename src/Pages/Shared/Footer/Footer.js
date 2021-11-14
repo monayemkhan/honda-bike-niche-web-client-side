@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faInstagramSquare, faInvision, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
-import { Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import logo from '../../../images/logo.png'
 import { NavLink } from 'react-router-dom';
 const Footer = () => {
+
     return (
         // this is footer section
         <Container fluid>

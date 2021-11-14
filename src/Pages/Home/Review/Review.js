@@ -1,32 +1,27 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-// import StarRatings from './react-star-ratings'
+import StarRatings from 'react-star-ratings';
 
 const Review = (props) => {
     const { name, profession, rating, review } = props?.review;
 
-    // changeRating(newRating, name); {
-    //     this.setState({
-    //         rating: newRating
-    //     });
-    // }
-
     return (
+        // review section
         <>
             <Container>
                 <Row>
-                    <Col className="my-sm-3 my-md-3">
+                    <Col className="my-sm-3 my-md-5">
                         <Card>
                             <Card.Body>
-                                <Card.Title>{name}</Card.Title>
-                                <Card.Text>{profession}</Card.Text>
-                                <Card.Title>
-                                    {/* <StarRatings
+                                <Card.Title className="m-0">{name}</Card.Title>
+                                <Card.Text className="m-0">{profession}</Card.Text>
+                                <Card.Text>
+                                    <StarRatings
                                         rating={parseFloat(rating)}
                                         starDimension="20px"
                                         starSpacing="5px"
-                                    /> */}
-                                </Card.Title>
+                                    />
+                                </Card.Text>
                                 <Card.Text>{review}</Card.Text>
                             </Card.Body>
                         </Card>

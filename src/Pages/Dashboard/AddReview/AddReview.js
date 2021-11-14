@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React from 'react';
+import { Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../hooks/useAuth';
 
 const AddReview = () => {
     const { register, handleSubmit, reset } = useForm();
+    const { isLoading } = useAuth();
 
     // handle review
     const onSubmit = data => {
-        axios.post('http://localhost:5000/reviews', data)
+        axios.post('https://fierce-castle-66914.herokuapp.com/reviews', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Reviews Added Successfully');
@@ -17,11 +20,13 @@ const AddReview = () => {
     };
 
     return (
+        // add review component
         <div>
+            {isLoading && <Spinner className="d-block mx-auto my-3" animation="border" variant="danger" />}
             <div className="container my-5">
                 <div className="row w-75 mx-auto">
                     <div className="border rounded-3 border-danger shadow-lg">
-                        <h3 className=" text-uppercase fw-bold my-3">Add Review</h3>
+                        <h4 className="text-uppercase fw-bold mb-3 py-2 bg-danger text-light">Add Review</h4>
                         <p>Please fill the form with all info</p>
                         <div>
                             <form className="p-3" onSubmit={handleSubmit(onSubmit)}>

@@ -18,6 +18,12 @@
   color:white;
 }
 
+/* dash home img styles */
+.user-img{
+  width: 20%;
+  height: 20%;
+}
+
 /* footer section menu items styles here */
 .footer-menu .menu-item:hover{
   color: red !important;

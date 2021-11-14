@@ -29,7 +29,6 @@ const PrivateRoute = ({ children, ...rest }) => {
                     }}
                 ></Redirect>
             )
-
             }
         >
         </Route>

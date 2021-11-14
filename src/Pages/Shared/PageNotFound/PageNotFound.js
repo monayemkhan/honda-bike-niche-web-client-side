@@ -2,6 +2,7 @@ import React from 'react';
 import notFound from '../../../images/not-found.jpg'
 
 const PageNotFound = () => {
+
     return (
         // this is page not found page
         <div>

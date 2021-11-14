@@ -6,30 +6,51 @@ const Reviews = () => {
     const [reviews, setReview] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://fierce-castle-66914.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setReview(data))
     }, [setReview]);
 
 
     const settings = {
-        className: "center",
+        className: "center mb-5",
         dots: true,
         infinite: true,
         slidesToShow: 3,
         swipeToSlide: true,
-        afterChange: function (index) {
-            console.log(
-                `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-            );
-        }
-    }
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
 
     return (
         // this is review section
         <>
-            <div className="my-sm-3 my-md-5 container">
-                <h2 className="text-uppercase fw-bold mt-5">Our Client Says</h2>
+            <div className=" container">
+                <h2 className="text-uppercase fw-bold mt-5">Client Reviews</h2>
                 <Slider {...settings} className="">
                     {
                         reviews.map(review => <Review

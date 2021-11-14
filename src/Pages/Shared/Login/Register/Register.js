@@ -9,8 +9,6 @@ const Register = () => {
     const history = useHistory();
     const { user, registerUser, isLoading, authError } = useAuth();
 
-
-
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -18,6 +16,7 @@ const Register = () => {
         newLoginData[field] = value;
         setLoginData(newLoginData);
     }
+
     const handleLoginSubmit = e => {
         if (loginData?.password !== loginData?.password2) {
             alert('Your password did not match');
@@ -28,10 +27,11 @@ const Register = () => {
     }
 
     return (
+        // register component
         <>
             <Container className="my-5 border border-danger rounded-3 w-75 mx-auto">
                 <Row>
-                    <h2 className="bg-danger text-light p-3">Please Register</h2>
+                    <h4 className="bg-danger text-light p-3">Please Register</h4>
                     <form className=" w-75 mx-auto" onSubmit={handleLoginSubmit}>
                         <input
                             className="form-control m-3"
@@ -72,7 +72,7 @@ const Register = () => {
                             <p className="my-3 fs-5">Already Registered? Please Login</p>
                         </NavLink>
                     </form>
-                    {isLoading && <Spinner animation="border" variant="danger" />}
+                    {isLoading && <Spinner className="d-block mx-auto my-3" animation="border" variant="danger" />}
                     {user?.email && <Alert variant="success">User Created successfully!</Alert>}
                     {authError && <Alert variant="danger">{authError}</Alert>}
                 </Row>
