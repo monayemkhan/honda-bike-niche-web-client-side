@@ -43,7 +43,7 @@ const Purchase = () => {
             <Row>
                 {/* bike details */}
                 <Col md={7}>
-                    <img className="mt-5" src={`https://www.banglamotor.net/images/honda/honda-cbr150r-repsol-first1.jpg`} alt="" />
+                    <img className="mt-5" src={bikes?.img} alt="" />
                     <Card className="m-3">
                         <Card.Header>{bikes?.name}</Card.Header>
                         <ListGroup className="list-group-flush">

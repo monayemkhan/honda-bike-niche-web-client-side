@@ -39,7 +39,7 @@ const AddBike = () => {
                             </form>
                         </div>
                     </div>
-                    <p className="mt-5"><span className="mt-5 fw-bold">Image URL: </span> </p>
+                    <p className="mt-5"><span className="mt-5 fw-bold">Image URL: https://i.ibb.co/fQXs1MV/honda-cbr150r-repsol-first1.jpg</span> </p>
                 </div>
             </div>
         </>

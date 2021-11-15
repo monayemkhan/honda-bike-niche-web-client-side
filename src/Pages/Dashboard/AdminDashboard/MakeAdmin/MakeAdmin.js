@@ -52,7 +52,7 @@ const MakeAdmin = () => {
                                     variant="outline-danger"
                                 >Create Admin</Button>
                             </form>
-                            {success && <Alert variant="success">Admin Created successfully!</Alert>}
+                            {success && <Alert className="mt-3" variant="success">Admin Created successfully!</Alert>}
                         </Card.Body>
                     </Card>
                 </Row>

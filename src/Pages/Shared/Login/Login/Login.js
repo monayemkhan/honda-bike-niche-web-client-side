@@ -68,7 +68,7 @@ const Login = () => {
                         <Button
                             onClick={handleGoogleSignIn}
                             className="bg-primary my-5 fs-5"
-                        >Log In Google</Button>
+                        >Log In with Google</Button>
                     </form>
                 </Row>
             </Container>

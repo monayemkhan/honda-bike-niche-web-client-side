@@ -8,7 +8,7 @@ const Footer = () => {
 
     return (
         // this is footer section
-        <Container fluid>
+        <Container fluid className="mt-4">
             {/* footer top */}
             <Row className="bg-danger text-center">
                 <Col className=" col-md-6 mx-auto">
