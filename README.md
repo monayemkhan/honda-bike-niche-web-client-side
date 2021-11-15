@@ -15,10 +15,13 @@ In App.js file you can see the Router of this website. I just simply rename the 
 
 In Navigation Component, site details added. 
 user can fiend here Two Services header div. One is top-header and header-bottom
-top-header contain Header information like "The propose of this project total Budget of the concert and a short text about project" and header-bottom contain site logo and navigation and as well as login button. 
+top-header contain Header information like "The propose of this project total Budget of the concert and a short text about project" and header-bottom contain site logo and navigation and as well as login button.
+
+### Admin Dashboard
+Admin Dashboard will be appere on when a user logged in. without log in no one can go into the Admin Dashboard. In this admin dashboard a user can manege all data of website like delete add etc There is a special Admin role which is Admin An admin can control everything and also can create new admin. from existing admin
 
 
-### My Booking
+### My Order
 
 My order will show users (his/her) own data. Which is he/She order before. 
 
